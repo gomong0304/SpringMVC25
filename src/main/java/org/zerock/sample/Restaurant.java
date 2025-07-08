@@ -9,8 +9,7 @@ import lombok.Setter;
 @Component
 @Data
 public class Restaurant {
-	
-	@Setter(onMethod_ = @Autowired)
-	private Chef chef; // 원래 써먹으려면 Chef chef=new Chef(); 이렇게 써서 사용했는데 생략할수 있음
 
+	@Setter(onMethod_ = @Autowired)
+	private Chef chef;	// Chef chef = new Chef();	
 }

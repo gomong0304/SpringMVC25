@@ -2,10 +2,44 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- 스프링에서 관리해야하는 도메인을 지정한다. dto dao 관리(service 계층) -->
-	<context:component-scan base-package="org.zerock.sample"></context:component-scan>
+	<!-- 스프링에서 관리해야 하는 도메인을 지정한다. dto, dao 관리(service계층) -->
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+
+		<!-- log4jdbc용으로 튜닝할꺼임 -> 콘솔에서 결과를 표형식으로 볼 수 있게
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.111.104:1521:XE"></property> -->
+			
+		<!-- root-context.xml 기존코드 변경 -->	
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property> 
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property> 
+		
+
+		<property name="username" value="book_ex"></property>
+		<property name="password" value="book_ex"></property>
+	</bean>  <!-- jdbc 1,2단계설정 -->
+
+	<!-- HikariCP configuration 커낵션 풀 설정용 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	<!-- pstmt 대체용 코드 마이바티스로 sql문을 매핑 p91 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- sql문이 들어있는 매핑용 인터페이스나 xml를 검색하는 용도 -->
+	<mybatis-spring:scan base-package="org.zerock.mapper"/>
+	
+	
+	<context:component-scan
+		base-package="org.zerock.sample"></context:component-scan>
 </beans>
