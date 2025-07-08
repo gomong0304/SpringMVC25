@@ -3,7 +3,7 @@
 
 관련 프로그램 설치
 1. jdk(11버전) -> 환경변수(JAVA_HOME)
-2. 톰켓(9버전) -> 포트번호(ADMIN : 8000, HTTP 1.1 : 80)
+2. 톰켓(9버전) -> 포트번호(ADMIN : 8888, HTTP 1.1 : 80)
 3. 이클립스 설치 안됨(마켓플레이스 SPRING 지원 종료) -> sts 3버전
 4. lombok.jar(홈페이지에서 다운) -> d: 저장
    -> cmd -> d: 엔터 -> java -jar lombok.jar -> 팝업에 install 클릭 -> close
