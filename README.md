@@ -4,11 +4,11 @@
 관련 프로그램 설치
 1. jdk(11버전) -> 환경변수(JAVA_HOME)
 2. 톰켓(9버전) -> 포트번호(ADMIN : 8888, HTTP 1.1 : 80)
-3. 이클립스 설치 안됨(마켓플레이스 SPRING 지원 종료) -> sts 3버전
-4. lombok.jar(홈페이지에서 다운) -> d: 저장
+3. 이클립스 설치 안됨(마켓플레이스 SPRING 지원 종료) -> sts 3버전 (선생님이 주신거 써도뎀)
+4. lombok.jar(홈페이지에서 다운) -> d: 저장 (게터 세터 toString 스스로 만들어주는 역할)
    -> cmd -> d: 엔터 -> java -jar lombok.jar -> 팝업에 install 클릭 -> close
 5. sts 구동 -> d:\sts-workspace 경로 -> sts 구동 완료
-6. new -> server 셋팅 -> tomcat 9.0 연동
+6. new -> server 셋팅 -> tomcat 9.0 연동 (기존 파일 삭제하고 다시 연동하기)
 
 프로젝트 생성시 처음 해야 할 것 
 
