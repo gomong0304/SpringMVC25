@@ -5,10 +5,10 @@
 <!-- 인터페이스와 매핑되는 필수 코드 -->
 <!-- 참고사이트 https://mybatis.org/mybatis-3/ko/sqlmap-xml.html -->
 <mapper namespace="org.zerock.mapper.TimeMapper"> <!-- 인터페이스명 -->
-
-	<select id="getTime2" resultType="string"> 
-	<!-- id=메서드명        resultType=문자열 -->
+	
+	<select id="getTime2" resultType="string">
+	<!-- id : 메서드명      결과타입 : 문자열 -->
 		SELECT sysdate FROM dual
 	</select>
-</mapper>
 
+</mapper>

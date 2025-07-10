@@ -12,7 +12,10 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+	<!-- 의존성 주입 시작 -->
 	<dependencies>
+	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -26,6 +29,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -46,7 +50,7 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
-		<!-- Logging
+		<!-- Logging  보안 이슈로 버전 향상 해야 됨
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -63,10 +67,9 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>-->
 		
-		<!-- 보안 이슈로 버전 향상 해야 됨
-		<dependency>
+		<!-- <dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.15</version>
@@ -89,24 +92,27 @@
 				</exclusion>
 			</exclusions>
 			<scope>runtime</scope>
-		</dependency>-->
+		</dependency> -->
 		
+		<!-- 보안 이슈로 log4j2로 향상 -->
 		<dependency>
-			<!-- 보안 이슈로 log4j2로 향상 -->
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>2.18.0</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>2.18.0</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>2.18.0</version>
-		</dependency> <!-- 보안 이슈로 log4j2로 향상 -->
+		</dependency>
+		<!-- 보안 이슈로 log4j2로 향상 끝-->
 
 		<!-- @Inject -->
 		<dependency>
@@ -115,36 +121,49 @@
 			<version>1</version>
 		</dependency>
 
-		<!-- Servlet -->
+		<!-- Servlet
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
+		</dependency> 
+		서블릿 버전향상을 위해 주석처리 -->
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<!-- p111 서블릿 버전향상 프론트+컨트롤러 -->
+		<dependency> 
+    		<groupId>javax.servlet</groupId>
+    		<artifactId>javax.servlet-api</artifactId>
+    		<version>3.1.0</version>
+    		<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-		</dependency>
-
+		</dependency> 
+		
 		<!-- Test -->
 		<dependency>
-			<groupId>junit</groupId>
+			<groupId>junit</groupId> <!-- 메서드 단위로 테스트 가능하게 해줌 -->
 			<artifactId>junit</artifactId>
 			<version>4.12</version> <!-- 4.7에서 4.12버전으로 향상-->
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok 롬북 추가 코드 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<artifactId>lombok</artifactId> <!-- DTO 객체 처리용 게터 세터 toString,equals, 생성자 등 자동 생성해줌 -->
 			<version>1.18.38</version>
 		</dependency>
 
@@ -155,31 +174,25 @@
 			<version>23.2.0.0</version>
 		</dependency>
 
-
 		<!-- 커넥션풀용 코드 추가 p83 https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
+			<artifactId>HikariCP</artifactId> <!-- db 먼저 만들고 넣어야함 -->
 			<version>2.7.4</version>
 		</dependency>
 		
 		<!-- root-context.xml 에 삽입
-		 
 		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-	
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
-			
-		<property name="username" value="book_ex"></property>
-		<property name="password" value="book_ex"></property>
+			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
+			<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>	
+			<property name="username" value="book_ex"></property>
+			<property name="password" value="book_ex"></property>
 		</bean>
 
 		HikariCP configuration
 		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 			<constructor-arg ref="hikariConfig" />
-		</bean>
-		
-		-->
+		</bean> -->
 		
 		<!-- 마이바티스 -> pstmt의 대체용  : jdbc 연동용 https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<!-- 마이바티스 메핑용 코드 -->
@@ -214,11 +227,9 @@
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 			<property name="dataSource" ref="dataSource"></property>
 		</bean>
-	
 		<mybatis-spring:scan base-package="org.zerock.mapper"/>
 		org.zerock.mapper -> 매핑용 인터페이스 위치  
 		sql처리를 mapper에서 찾는다.  -> 인터페이스 + xml로 sql 처리함.
-				
 		-->
 		
 		<!-- 로그출력을 표형식으로 구현 https://mvnrepository.com/artifact/org.bgee.jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
@@ -228,7 +239,15 @@
 			<version>1.16</version>
 		</dependency>
 		
-	</dependencies> <!-- 의존성 주입 종료 -->
+		<!-- 프론트 결과를 json 타입으로 보이게 설정 https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+   			 <artifactId>jackson-databind</artifactId>
+   			 <version>2.9.4</version>
+		</dependency>
+	</dependencies> 
+	<!-- 의존성 주입 종료 -->
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -248,10 +267,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>3.5.1</version> <!-- 2.5.1에서 버전 향상 시킴 -->
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>11</source> <!-- 1.6에서 버전 향상 시킴 -->
+					<target>11</target> <!-- 1.6에서 버전 향상 시킴 -->
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>

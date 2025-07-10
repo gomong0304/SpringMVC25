@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @RunWith(SpringJUnit4ClassRunner.class) // 메서드단위로 테스트용 코드
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml") // 테스트시 사용될 코드
 @Log4j2 // Log4j가 취약해서 Log4j2로 교체함.
-public class SampleTests {
+public class SampleTests  {
 
 	@Setter(onMethod_ = @Autowired)
 	private Restaurant restaurant; // 필드 선언
