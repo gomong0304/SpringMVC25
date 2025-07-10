@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- 스프링에서 관리해야 하는 도메인을 지정한다. dto, dao 관리(service계층) -->
-
+	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 
 		<!-- log4jdbc용으로 튜닝 -> 콘솔에서 결과를 표형식으로 볼 수 있게 설정 
@@ -37,9 +34,6 @@
 
 	<!-- sql문이 들어 있는 매핑용 인터페이스나 xml를 검색하는 용도 -->
 	<!-- sql쿼리문을 관리하는 xml과 인터페이스를 매핑하는 패키지를 스캔한다. -->
-	<mybatis-spring:scan base-package="org.zerock.mapper"/>
-	
-	<!-- dto 객체를 담당하는 곳으로 패키지를 스캔한다. -->
-	<context:component-scan base-package="org.zerock.sample"></context:component-scan>
-	
+	<mybatis-spring:scan base-package="org.mbc.board"/>
+		
 </beans>

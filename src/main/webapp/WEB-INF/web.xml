@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-<!-- 톰켓에 있는  web.xml 17행 코드로 교체  -->
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
-	</context-param> <!-- 스프링이 관리할 xml 문서 (bean : 객체 관리->히카리cp, 마이바티스, sql매퍼, dto 등...) -->
+	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
@@ -14,17 +14,12 @@
 
 	<!-- Processes application requests -->
 	<servlet>
-		<servlet-name>appServlet</servlet-name> <!-- 프론트 쪽 -->
+		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
-		</init-param> <!-- view를 담당하는 파일 위치 -->
-		<!-- p159 추가 -->
-		<init-param>
-			<param-name>throwExceptionIfNoHandlerFound</param-name> <!-- 스프링이 가지고있는 이름임 -->
-			<param-value>true</param-value>
-		</init-param> <!-- 톰캣이 404와 같은 예외처리를 하지말아라 -->
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
