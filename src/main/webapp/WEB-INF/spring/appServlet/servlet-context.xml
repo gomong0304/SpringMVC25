@@ -23,9 +23,9 @@
 		<!-- 컨트롤러에서 리턴이 string이나 void인 경우 /WEB-INF/views/문자열.jsp를 찾는 역할을 제공 -->
 	</beans:bean>
 	
-	<!-- 컨트롤러 역할을 담당하는 부분을 스캔하는 목적!!! -->
+	<!-- 컨트롤러 역할을 담당하는 부분을 스캔하는 목적!!! : 클래스 아이콘에 작은 s가 보임 -->
 	<context:component-scan base-package="org.zerock.controller" /> 
-	
+	<context:component-scan base-package="org.zerock.exception" />
 	
 	
 </beans:beans>

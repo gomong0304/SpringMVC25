@@ -146,7 +146,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<dependency>
+		<dependency> <!--taglib용 코드 기본 내장 c:out -->
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
