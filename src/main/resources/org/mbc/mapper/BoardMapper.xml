@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 홈페이지에서 아래 코드 복사해옴 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 마이바티스 기본코드 -->     
+<mapper namespace="org.mbc.mapper.BoardMapper"> <!-- 인터페이스 명 -->
+
+
+	<!-- CDATA는 쿼리문의 특수문자가 연산자가 아닌 글자 처리용 -->
+	<select id="getList2" resultType="org.mbc.domain.BoardVO">
+	<!--    id는 메서드 명  resultType는 BoardVO 객체 -->
+		<![CDATA[
+		select * from tbl_board where bno > 0
+		]]>
+	</select>
+	
+	<!-- ===============================================================  -->
+
+	<insert id="insert"> <!-- 생성된 객체에 값이 넘어오면 insert 쿼리문이 실행된다. -->
+		<![CDATA[
+			insert into tbl_board (bno, title, content, writer) 
+			values (seq_board.nextval, #{title}, #{content}, #{writer})
+		]]>
+	</insert> <!-- C-1 종료 -->
+	
+	<!-- ===============================================================  -->
+	
+	<insert id="insertSelectKey"> <!-- 사전에 자동번호를 먼저 가지고 와라 그값으로 bno를 넣겠다. -->
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			select seq_board.nextval from dual
+		</selectKey> <!-- insertSelectKey 메서드가 실행되면 사전에 시퀀스 키를 가지고와!!! -->
+		<![CDATA[
+			insert into tbl_board (bno, title, content, writer) 
+			values (#{bno}, #{title}, #{content}, #{writer})
+		]]>
+	</insert> <!-- C-2 종료 -->
+	
+	<!-- ===============================================================  -->
+	
+	<select id="read" resultType="org.mbc.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno = #{bno}
+		]]>
+	</select> <!-- bno가 넘어오면 찾아서 객체로 넘겨준다.--> <!-- R 종료 -->
+	
+	<!-- ===============================================================  -->
+	
+	<delete id="delete">
+		<![CDATA[
+			delete from tbl_board where bno= #{bno}
+		]]>
+	</delete> <!-- D 종료 -->
+	
+	<!-- ===============================================================  -->
+	
+	<update id="update">
+		<![CDATA[
+			update tbl_board set title=#{title}, content=#{content}, writer=#{writer},
+			updateDate=sysdate where bno=#{bno}
+		]]>
+	</update> <!-- U 종료 -->
+	
+</mapper>
+   

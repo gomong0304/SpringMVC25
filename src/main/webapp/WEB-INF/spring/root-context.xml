@@ -34,6 +34,6 @@
 
 	<!-- sql문이 들어 있는 매핑용 인터페이스나 xml를 검색하는 용도 -->
 	<!-- sql쿼리문을 관리하는 xml과 인터페이스를 매핑하는 패키지를 스캔한다. -->
-	<mybatis-spring:scan base-package="org.mbc.board"/>
+	<mybatis-spring:scan base-package="org.mbc.mapper"/>
 		
 </beans>
