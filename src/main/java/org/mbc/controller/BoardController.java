@@ -30,11 +30,21 @@ public class BoardController {
 		
 		model.addAttribute("list", service.getList());
 		// 프론트에서 ${list}로 활용한다. (for문을 사용해야할꺼같네?)
+		
+		// 컨트롤러에서 리턴타입이 void이면 경로와 같은 JSP를 찾는다.
 	}
 	
 	//----------------------------------------------------------------------------------
 	
-	@PostMapping("/register")
+	@GetMapping("/register")
+	public String register() {
+		// JSP 페이지 전달용
+		return "/board/register";
+	}
+	
+	//----------------------------------------------------------------------------------
+	
+	@PostMapping("/register") // post 방식은 한글이 깨져서 나와서 인코딩이 필요하다!!!!!! -> web.xml에다가
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		//								  RedirectAttributes rttr은 성공후 이동할 경로를 기입한다.
 		
@@ -48,8 +58,11 @@ public class BoardController {
 
 	//----------------------------------------------------------------------------------
 	
-	@GetMapping("/get") // http://192.168.111.104:80/board/get?bno=5
+	@GetMapping({"/get","/modify"}) // http://192.168.111.104:80/board/get?bno=5
 	public void get(@RequestParam("bno") Long bno, Model model) {
+		// void 리턴 타입에 URL이 2개인 경우 다 반응한다.
+		// get -> get.jsp
+		// modify -> modify.jsp
 		// URL을 통해서 넘어온 bno=5 문자열을 long 타입으로 받는다. /model 객체에 넣는다.
 		log.info("BoardController.get 메서드 실행...........");
 		
